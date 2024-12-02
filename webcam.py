@@ -65,6 +65,9 @@ class VideoStream:
         # Indicate that the camera and thread should be stopped
         self.stopped = True
 
+    def getFPS(self):
+        return self.stream.get(cv2.CAP_PROP_FPS)
+
 # Define and parse input arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('--modeldir', help='Folder the .tflite file is located in',
@@ -254,3 +257,4 @@ while True:
 # Clean up
 cv2.destroyAllWindows()
 videostream.stop()
+# python webcam.py --modeldir ./ --graph detect.tflite --labels labelmap.txt --resolution 640x480 --threshold 0.7
